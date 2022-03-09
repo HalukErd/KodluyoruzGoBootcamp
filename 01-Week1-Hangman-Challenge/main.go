@@ -31,29 +31,29 @@ var m = make(map[rune][]int)
 
 func main() {
 
+	// Preparation
 	i := 0
 	clear()
 	defineNewWord()
-	// _ a _ a
 
 	for {
 
-		// Preparation
-
+		// Show status
 		clear()
 		showGallows(i)
 		fmt.Println(string(emptyWord))
 
+		// Get input
 		fmt.Printf("Enter a rune: ")
 		line, _, _ := inputReader.ReadLine()
 		ln := string(line)
-
 		matched, _ := regexp.MatchString(letterRegexp, ln)
 		if len(ln) != 1 || !matched {
 			fmt.Println("You must enter a letter.")
 			time.Sleep(time.Second)
 			continue
 		}
+		
 		ch := ln[0]
 		indexes, ok := m[rune(ch)]
 		if ok {
